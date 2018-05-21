@@ -23,7 +23,6 @@ public class CPassword
         password = str;
     }
     
-    
     /**
      * Sets the value of the password to psw
      * 
@@ -51,6 +50,9 @@ public class CPassword
      */
     public boolean length()
     {
+        if (password == null)
+            throw new NullPointerException();
+        
         return (password.length() == PASSWORD_LENGTH);
     }
     
@@ -61,6 +63,9 @@ public class CPassword
      */
     public boolean upper()
     {
+        if (password == null)
+            throw new NullPointerException();
+        
         boolean hasUpper = false;
         
         for (int i = 0; i < password.length(); i++)
@@ -80,6 +85,9 @@ public class CPassword
      */
     public boolean lower()
     {
+        if (password == null)
+            throw new NullPointerException();
+        
         boolean hasLower = false;
         
         for (int i = 0; i < password.length(); i++)
@@ -99,6 +107,9 @@ public class CPassword
      */
     public boolean digit()
     {
+        if (password == null)
+            throw new NullPointerException();
+        
         boolean hasDigit = false;
         
         for (int i = 0; i < password.length(); i++)
@@ -121,6 +132,9 @@ public class CPassword
      */
     public boolean special()
     {
+        if (password == null)
+            throw new NullPointerException();
+        
         boolean hasSpecial = false;
         
         for (int i = 0; i < password.length(); i++)
@@ -138,22 +152,31 @@ public class CPassword
      */
     public boolean checkPassword()
     {
-        if (!length())
-            return false;
-        
-        else if (!lower())
-            return false;
-        
-        else if (!upper())
-            return false;
-        
-        else if (!digit())
-            return false;
-        
-        else if (!special())
-            return false;
-        
-        else
-            return true;
+        try
+        {
+            if (!length())
+                return false;
+
+            else if (!lower())
+                return false;
+
+            else if (!upper())
+                return false;
+
+            else if (!digit())
+                return false;
+
+            else if (!special())
+                return false;
+
+            else
+                return true;
+        }
+            catch (NullPointerException e)
+            {
+                System.out.println("Password cannot be null");
+                return false;
+            }
+            catch (Exception e) {}            
     }
 }

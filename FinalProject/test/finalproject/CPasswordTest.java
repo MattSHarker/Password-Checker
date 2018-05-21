@@ -16,26 +16,21 @@ import static org.junit.Assert.*;
  *
  * @author Matthew
  */
-public class CPasswordTest {
-    
-    public CPasswordTest() {
-    }
+public class CPasswordTest
+{    
+    public CPasswordTest() {}
     
     @BeforeClass
-    public static void setUpClass() {
-    }
+    public static void setUpClass() {}
     
     @AfterClass
-    public static void tearDownClass() {
-    }
+    public static void tearDownClass() {}
     
     @Before
-    public void setUp() {
-    }
+    public void setUp() {}
     
     @After
-    public void tearDown() {
-    }
+    public void tearDown() {}
 
     
     /**
@@ -46,7 +41,7 @@ public class CPasswordTest {
     @Test
     public void testLengthFalse()
     {
-        System.out.println("length");
+        System.out.println("Length: False");
         CPassword password;
         password = new CPassword("12345");
         
@@ -61,7 +56,7 @@ public class CPasswordTest {
     @Test
     public void testLengthTrue()
     {
-        System.out.println("length");
+        System.out.println("Length: True");
         CPassword password;
         password = new CPassword("123456");
         
@@ -76,7 +71,7 @@ public class CPasswordTest {
      */
     @Test
     public void testUpperFalse() {
-        System.out.println("upper");
+        System.out.println("Upper: false");
         CPassword password = new CPassword("abcdef");
         
         assertEquals(false, password.upper());
@@ -89,7 +84,7 @@ public class CPasswordTest {
      */
     @Test
     public void testUpperTrue() {
-        System.out.println("upper");
+        System.out.println("Upper: true");
         CPassword password = new CPassword("Abcdef");
         
         assertEquals(true, password.upper());
@@ -103,7 +98,7 @@ public class CPasswordTest {
      */
     @Test
     public void testLowerFalse() {
-        System.out.println("lower");
+        System.out.println("Lower: false");
         CPassword password = new CPassword("ABCDEF");
         
         assertEquals(false, password.lower());
@@ -116,7 +111,7 @@ public class CPasswordTest {
      */
     @Test
     public void testLowerTrue() {
-        System.out.println("lower");
+        System.out.println("Lower: true");
         CPassword password = new CPassword("ABCdEF");
         
         assertEquals(true, password.lower());
@@ -130,7 +125,7 @@ public class CPasswordTest {
      */
     @Test
     public void testDigitFalse() {
-        System.out.println("digit");
+        System.out.println("Digit: false");
         CPassword password = new CPassword("abcdef");
         
         assertEquals(false, password.digit());
@@ -143,7 +138,7 @@ public class CPasswordTest {
      */
     @Test
     public void testDigitTrue() {
-        System.out.println("digit");
+        System.out.println("Digit: true");
         CPassword password = new CPassword("abcde6");
         
         assertEquals(true, password.digit());
@@ -157,7 +152,7 @@ public class CPasswordTest {
      */
     @Test
     public void testSpecialFalse() {
-        System.out.println("special");
+        System.out.println("Special: false");
         CPassword password = new CPassword("abcdef");
         
         assertEquals(false, password.special());
@@ -170,7 +165,7 @@ public class CPasswordTest {
      */
     @Test
     public void testSpecialTrue() {
-        System.out.println("special");
+        System.out.println("Special: true");
         CPassword password = new CPassword("abcde^");
         
         assertEquals(true, password.special());
