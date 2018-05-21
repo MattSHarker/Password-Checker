@@ -3,8 +3,9 @@ package finalproject;
 public class CPassword
 {
     String password = "";
-    final short PASSWORD_LENGTH = 6;
-    char[] specialChars ={
+    
+    static final short PASSWORD_LENGTH = 6;
+    static final char[] SPECIAL_CHARS = {
         '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+'
     };
 
@@ -14,23 +15,23 @@ public class CPassword
     CPassword() {}
     
     /**
-     * Constructor which assigns 'str' as the password
+     * Constructor which assigns 'password' as the password
      * 
-     * @param str - the password
+     * @param password - the password
      */
-    CPassword(String str)
+    CPassword(String password)
     {
-        password = str;
+        this.password = password;
     }
     
     /**
-     * Sets the value of the password to psw
+     * Sets the value of the password to password
      * 
-     * @param psw - the new password
+     * @param password - the new password
      */
-    public void setPassword(String psw)
+    public void setPassword(String password)
     {
-        password = psw;
+        this.password = password;
     }
     
     /**
@@ -68,12 +69,8 @@ public class CPassword
         
         boolean hasUpper = false;
         
-        for (int i = 0; i < password.length(); i++)
-            if (Character.isUpperCase((char)password.charAt(i)))
-            {
-                hasUpper = true;
-                //break;
-            }
+        for (char c : password.toCharArray())
+            hasUpper |= Character.isUpperCase(c);
         
         return hasUpper;
     }
@@ -90,12 +87,8 @@ public class CPassword
         
         boolean hasLower = false;
         
-        for (int i = 0; i < password.length(); i++)
-            if (Character.isLowerCase((char)password.charAt(i)))
-            {
-                hasLower = true;
-                //break;
-            }
+        for (char c : password.toCharArray())
+            hasLower |= Character.isLowerCase(c);
         
         return hasLower;
     }
@@ -112,12 +105,8 @@ public class CPassword
         
         boolean hasDigit = false;
         
-        for (int i = 0; i < password.length(); i++)
-            if (Character.isDigit((char)password.charAt(i)))
-            {
-                hasDigit = true;
-                //break;
-            }
+        for (char c : password.toCharArray())
+            hasDigit |= Character.isDigit(c);
         
         return hasDigit;
     }
@@ -137,11 +126,9 @@ public class CPassword
         
         boolean hasSpecial = false;
         
-        for (int i = 0; i < password.length(); i++)
-            for (int j = 0; j < specialChars.length; j++)
-                if (password.charAt(i) == specialChars[j])
-                    hasSpecial = true;
-        
+        for (char special_char : SPECIAL_CHARS)
+            hasSpecial |= (password.indexOf(special_char) >= 0);
+
         return hasSpecial;
     }
     
@@ -166,17 +153,16 @@ public class CPassword
             else if (!digit())
                 return false;
 
-            else if (!special())
-                return false;
-
             else
-                return true;
+                return special();
         }
-            catch (NullPointerException e)
-            {
-                System.out.println("Password cannot be null");
-                return false;
-            }
-            catch (Exception e) {}            
+        catch (NullPointerException e)
+        {
+            System.out.println("Password cannot be null");
+            return false;
+        }
+        catch (Exception e) {
+            return false;
+        }
     }
 }
